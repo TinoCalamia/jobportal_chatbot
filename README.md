@@ -22,6 +22,3 @@ To access google drive you will need a file in `/.credentials` which is named `o
 
 # Token
 Once the app is started you need to verify once via the web browser. This will automatically create a `token.json` file.
-
-
-test
