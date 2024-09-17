@@ -4,8 +4,23 @@ from google.auth.transport.requests import Request
 from google.oauth2.credentials import Credentials
 from google_auth_oauthlib.flow import InstalledAppFlow
 from googleapiclient.discovery import build
+from google.cloud import secretmanager
 
 import src.constants as con
+
+
+def access_secret_version(project_id, secret_id, version_id="latest"):
+    # Create the Secret Manager client
+    client = secretmanager.SecretManagerServiceClient()
+
+    # Build the resource name of the secret version
+    name = f"projects/{project_id}/secrets/{secret_id}/versions/{version_id}"
+
+    # Access the secret version
+    response = client.access_secret_version(name=name)
+
+    # Return the payload as a string
+    return response.payload.data.decode("UTF-8")
 
 def token_generator(*,
                     scopes: list=['https://www.googleapis.com/auth/drive'],
@@ -54,3 +69,23 @@ def token_generator(*,
 # Post-processing
 def format_docs(docs):
     return "\n\n".join(doc.page_content for doc in docs)
+
+def create_oauth_credentials_file():
+    oauth_credentials = access_secret_version("jobportal-chatbot", "OAUTH_CREDENTIALS")
+
+    # Ensure the directory exists
+    credentials_dir = os.path.join(os.getcwd(), ".credentials")
+    # Define the full path for the credentials file
+    credentials_file = os.path.join(credentials_dir, "oauth_credentials.json")
+    os.makedirs(credentials_dir, exist_ok=True)
+    with open(credentials_file, 'w') as f:
+        f.write(oauth_credentials)
+
+def create_service_account_credentials_file():
+    sa_key = access_secret_version("jobportal-chatbot", "SERVICE_ACCOUNT_KEY")
+
+    # Write the service account JSON to a temporary file
+    with open('/tmp/google_credentials.json', 'w') as f:
+        f.write(sa_key)
+
+    os.environ['GOOGLE_APPLICATION_CREDENTIALS'] = "/tmp/google_credentials.json"

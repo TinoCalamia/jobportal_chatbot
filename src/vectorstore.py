@@ -1,8 +1,12 @@
+import os
 from langchain_community.vectorstores import Chroma
 from langchain_openai import OpenAIEmbeddings
-import src.constants as con
 
-import streamlit as st
+import src.constants as con
+from src.utils import access_secret_version
+
+
+os.environ['OPENAI_API_KEY'] = access_secret_version("jobportal-chatbot", "OPENAI_API_KEY")
 
 def create_vectorstore_from_documents(documents, vectorstore=Chroma(), embedding=OpenAIEmbeddings()):
     vector_db = vectorstore.from_documents(documents=documents, embedding=embedding)

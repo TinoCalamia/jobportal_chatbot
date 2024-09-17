@@ -2,6 +2,10 @@ import os
 from langchain_google_community import GoogleDriveLoader
 
 import src.constants as con
+from src.utils import create_oauth_credentials_file, create_service_account_credentials_file
+
+create_oauth_credentials_file()
+create_service_account_credentials_file()
 
 
 def load_google_docs(folder_id: str = con.JOB_FOLDER_ID, 
