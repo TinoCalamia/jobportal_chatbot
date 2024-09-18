@@ -1,4 +1,7 @@
 import os.path
+import os
+import json
+from datetime import datetime
 
 from google.auth.transport.requests import Request
 from google.oauth2.credentials import Credentials
@@ -7,6 +10,15 @@ from googleapiclient.discovery import build
 from google.cloud import secretmanager
 
 import src.constants as con
+
+
+def check_token_expiry(token_path):
+    with open(token_path, 'r') as token_file:
+        token_data = json.load(token_file)
+    expiry_str = token_data.get('expiry', '0')
+    expiry_timestamp = int(expiry_str) if expiry_str.isdigit() else 0
+    current_timestamp = int(datetime.now().timestamp())
+    return expiry_timestamp > current_timestamp
 
 
 def access_secret_version(project_id, secret_id, version_id="latest"):

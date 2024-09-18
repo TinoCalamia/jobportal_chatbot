@@ -4,6 +4,7 @@ from langchain_google_community import GoogleDriveLoader
 import src.constants as con
 from src.utils import create_oauth_credentials_file, create_service_account_credentials_file
 
+# Load credentials
 create_oauth_credentials_file()
 create_service_account_credentials_file()
 
@@ -14,6 +15,16 @@ def load_google_docs(folder_id: str = con.JOB_FOLDER_ID,
                      service_account_key_path: str = con.SERVICE_ACCOUNT_CREDENTIALS_PATH, 
                      file_types: list = ["document"], 
                      recursive: bool = False):
+    
+    """
+    Loads documents from Google Drive using the GoogleDriveLoader class.
+
+    Args:
+        folder_id (str): The ID of the folder containing the documents.
+        credentials_path (str): The path to the credentials file.
+        token_path (str): The path to the token file.
+        service_account_key_path (str): The path to the service account key file.
+        file_types (list): The types of files to load."""
     
     loader = GoogleDriveLoader(
         folder_id=folder_id,

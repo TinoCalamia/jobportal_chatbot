@@ -14,7 +14,7 @@ API_KEYS_PATH = '/.credentials/api_keys.json'
 JOB_FOLDER_ID = '1jhnDSwq64FBen6D8i5xoMghy6giP261Z'
 
 ########## Prompting ##########
-PROMPT_TEMPLATE = "basic"
+PROMPT_TEMPLATE = "job"
 
 
 ########## LLM ##########
