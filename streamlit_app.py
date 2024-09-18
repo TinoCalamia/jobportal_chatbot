@@ -10,7 +10,7 @@ from langchain.text_splitter import RecursiveCharacterTextSplitter
 import streamlit as st
 
 import src.constants as con
-from css.css import streamlit_css
+from src.css.css import streamlit_css
 from src.utils import access_secret_version
 
 os.environ['LANGCHAIN_TRACING_V2'] = "true"
