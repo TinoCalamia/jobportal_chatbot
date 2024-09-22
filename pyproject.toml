@@ -1,0 +1,32 @@
+[tool.poetry]
+name = "jobportal-chatbot"
+version = "0.1.0"
+description = ""
+authors = ["Your Name <you@example.com>"]
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = "3.11.7"
+chromadb = "0.5.5"
+pydantic = "^2.7.4"
+streamlit = "1.33.0"
+langchain-community = "0.3.0"
+langchain-core = "0.3.0"
+tiktoken = "0.7.0"
+langchain-openai = "0.2.0"
+langchainhub = "0.1.21"
+langchain = "0.3.0"
+langchain-google-community = "2.0.0"
+pypdf2 = "3.0.1"
+altair = "4.0"
+oauth2client = "<4.0.0"
+bs4 = "0.0.2"
+google-auth-oauthlib = "1.2.1"
+google-cloud-secret-manager = "2.20.2"
+protobuf = "4.25.4"
+pillow = "9.5.0"
+
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
