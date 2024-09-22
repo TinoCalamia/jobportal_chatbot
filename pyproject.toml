@@ -6,7 +6,7 @@ authors = ["Your Name <you@example.com>"]
 readme = "README.md"
 
 [tool.poetry.dependencies]
-python = "3.11.7"
+python = "3.11.10"
 chromadb = "0.5.5"
 pydantic = "^2.7.4"
 streamlit = "1.33.0"
