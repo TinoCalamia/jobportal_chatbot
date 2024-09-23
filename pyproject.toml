@@ -26,6 +26,7 @@ google-cloud-secret-manager = "2.20.2"
 protobuf = "4.25.4"
 pillow = "9.5.0"
 google-cloud-discoveryengine = "0.12.2"
+faiss-cpu = "1.8.0.post1"
 
 
 [build-system]
