@@ -1,0 +1,10 @@
+services:
+  streamlit-app:
+    build: .
+    ports:
+      - "8501:8501"
+    volumes:
+      - .:/app
+    environment:
+      - LANGCHAIN_TRACING_V2=true
+      - LANGCHAIN_ENDPOINT=https://api.smith.langchain.com

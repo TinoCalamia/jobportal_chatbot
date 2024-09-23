@@ -17,12 +17,21 @@ streamlit_css = """
     h1 {
         color: #1e90ff;
     }
-    .stChatInputContainer {
-        background-color: #1e90ff !important;
+
+    * Style for the chat input field */
+    .stChatInputContainer textarea {
+        border: 1px solid #E0E0E0;
+        border-radius: 20px;
+        background-color: white !important;
     }
-    .stChatInputContainer > div > textarea {
-        background-color: #1e90ff !important;
+
+    /* Style for the send button */
+    .stChatInputContainer button {
+        background-color: #1E90FF !important;
+        color: white !important;
+        border-radius: 20px;
     }
+
     .stAlert {
         background-color: #f0f8ff;
         color: #333;

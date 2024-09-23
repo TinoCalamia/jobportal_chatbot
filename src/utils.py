@@ -96,8 +96,14 @@ def create_oauth_credentials_file():
 def create_service_account_credentials_file():
     sa_key = access_secret_version("jobportal-chatbot", "SERVICE_ACCOUNT_KEY")
 
+    # Ensure the directory exists
+    credentials_dir = os.path.join(os.getcwd(), ".credentials")
+    # Define the full path for the credentials file
+    credentials_file = os.path.join(credentials_dir, "service_account.json")
+    os.makedirs(credentials_dir, exist_ok=True)
+
     # Write the service account JSON to a temporary file
-    with open('/tmp/google_credentials.json', 'w') as f:
+    with open(credentials_file, 'w') as f:
         f.write(sa_key)
 
-    os.environ['GOOGLE_APPLICATION_CREDENTIALS'] = "/tmp/google_credentials.json"
+    os.environ['GOOGLE_APPLICATION_CREDENTIALS'] = credentials_file

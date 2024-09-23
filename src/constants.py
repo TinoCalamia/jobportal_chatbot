@@ -7,7 +7,7 @@ SPLITTER_CHUNK_OVERLAP = 100
 ########## Credential Paths ##########
 OAUTH_CREDENTIALS_PATH ='/.credentials/oauth_credentials.json'
 TOKEN_PATH = '/.credentials/token.json'
-SERVICE_ACCOUNT_CREDENTIALS_PATH = '/.credentials/ervice_account.json'
+SERVICE_ACCOUNT_CREDENTIALS_PATH = '/.credentials/service_account.json'
 API_KEYS_PATH = '/.credentials/api_keys.json'
 
 ########## Google Drive Constants ##########

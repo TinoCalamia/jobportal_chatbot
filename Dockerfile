@@ -1,5 +1,5 @@
 # Use an official Python runtime as a parent image
-FROM python:3.11-slim
+FROM python:3.11.10-slim
 
 # Set the working directory in the container
 WORKDIR /app
@@ -13,11 +13,11 @@ RUN pip install --no-cache-dir -r requirements.txt
 # Make port 8501 available to the world outside this container
 EXPOSE 8501
 
-# Set environment variables
-ENV PYTHONUNBUFFERED=1 \
-    PYTHONDONTWRITEBYTECODE=1 \
-    STREAMLIT_SERVER_PORT=8501 \
-    STREAMLIT_SERVER_HEADLESS=true
+# # Set environment variables
+# ENV PYTHONUNBUFFERED=1 \
+#     PYTHONDONTWRITEBYTECODE=1 \
+#     STREAMLIT_SERVER_PORT=8501 \
+#     STREAMLIT_SERVER_HEADLESS=true
 
 # Run streamlit when the container launches
 CMD ["streamlit", "run", "streamlit_app.py"]

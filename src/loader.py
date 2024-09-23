@@ -26,11 +26,15 @@ def load_google_docs(folder_id: str = con.JOB_FOLDER_ID,
         service_account_key_path (str): The path to the service account key file.
         file_types (list): The types of files to load."""
     
+    print(os.getcwd() + credentials_path)
+    print(os.getcwd() + token_path)
+    print(os.getcwd() + service_account_key_path)
+
     loader = GoogleDriveLoader(
         folder_id=folder_id,
         credentials_path= os.getcwd() + credentials_path,
         token_path= os.getcwd() + token_path,
-        service_account_key= os.getcwd() + service_account_key_path,
+        # service_account_key= os.getcwd() + service_account_key_path,
         file_types=file_types,
         recursive=recursive,)
     

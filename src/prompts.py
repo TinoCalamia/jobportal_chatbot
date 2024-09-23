@@ -37,4 +37,6 @@ def create_job_prompt():
             Heading 1: Link to the job page
 
             I want all headings to be in bold and have the colour 1e90ff.
+
+            Make sure that you have a personal tone when phrasing. Use the "Du" form in German.
             """
