@@ -179,6 +179,17 @@ test = ["anyio[trio]", "coverage[toml] (>=7)", "exceptiongroup (>=1.2.0)", "hypo
 trio = ["trio (>=0.26.1)"]
 
 [[package]]
+name = "argparse"
+version = "1.4.0"
+description = "Python command-line parsing library"
+optional = false
+python-versions = "*"
+files = [
+    {file = "argparse-1.4.0-py2.py3-none-any.whl", hash = "sha256:c31647edb69fd3d465a847ea3157d37bed1f95f19760b11a47aa91c04b666314"},
+    {file = "argparse-1.4.0.tar.gz", hash = "sha256:62b089a55be1d8949cd2bc7e0df0bddb9e028faefc8c32038cc84862aefdd6e4"},
+]
+
+[[package]]
 name = "asgiref"
 version = "3.8.1"
 description = "ASGI specs, helper code, and adapters"
@@ -820,6 +831,21 @@ files = [
     {file = "entrypoints-0.4-py3-none-any.whl", hash = "sha256:f174b5ff827504fd3cd97cc3f8649f3693f51538c7e4bdf3ef002c8429d42f9f"},
     {file = "entrypoints-0.4.tar.gz", hash = "sha256:b706eddaa9218a19ebcd67b56818f05bb27589b1ca9e8d797b74affad4ccacd4"},
 ]
+
+[[package]]
+name = "exception"
+version = "0.1.0"
+description = "Extract unique Python exceptions with their traceback from a log file."
+optional = false
+python-versions = "*"
+files = [
+    {file = "exception-0.1.0-py2.py3-none-any.whl", hash = "sha256:f8ce0ed8e75fafa9f948e37548290cb8d188a154a17426b1a9ca01f39647cf08"},
+    {file = "exception-0.1.0.tar.gz", hash = "sha256:b11176dc5c4386a1649476d498b2efd3cd6eb1151ca6c2214f16b90a785c0a3b"},
+]
+
+[package.dependencies]
+argparse = "*"
+six = "*"
 
 [[package]]
 name = "faiss-cpu"
@@ -5344,4 +5370,4 @@ type = ["pytest-mypy"]
 [metadata]
 lock-version = "2.0"
 python-versions = "3.11.10"
-content-hash = "83859b284d4ca61a4c3729e1ab6129483392a81a017c2bb764643a7d7bbf0826"
+content-hash = "fc88b55abb95b11e1ed8ea153e80eb36c9f84c90a39e5bd7d1afa06f19fbd63f"
