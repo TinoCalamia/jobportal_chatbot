@@ -28,4 +28,4 @@ EXPOSE 8080
 #     STREAMLIT_SERVER_HEADLESS=true
 
 # Run streamlit when the container launches
-CMD ["streamlit", "run", "streamlit_app.py", "--server.enableCORS=false"]
+CMD ["streamlit", "run", "streamlit_app.py", "–server.port=8080", "–server.address=0.0.0.0"]
