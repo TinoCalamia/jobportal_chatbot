@@ -5,13 +5,21 @@ FROM python:3.11.10-slim
 WORKDIR /app
 
 # Copy the current directory contents into the container at /app
-COPY . /app
+COPY . .
 
 # Install any needed packages specified in requirements.txt
-RUN pip install --no-cache-dir -r requirements.txt
+RUN pip install --no-cache-dir -r requirements.txt 
 
-# Make port 8501 available to the world outside this container
-EXPOSE 8501
+# Copy the service account key JSON into the container
+COPY .credentials/service_account.json /app/service_account.json
+
+# Set the environment variable for Google credentials
+ENV GOOGLE_APPLICATION_CREDENTIALS="/app/service_account.json"
+
+RUN python fetch_secrets.py
+
+# Make port 8080 available to the world outside this container
+EXPOSE 8080
 
 # # Set environment variables
 # ENV PYTHONUNBUFFERED=1 \
@@ -20,4 +28,4 @@ EXPOSE 8501
 #     STREAMLIT_SERVER_HEADLESS=true
 
 # Run streamlit when the container launches
-CMD ["streamlit", "run", "streamlit_app.py"]
+CMD ["streamlit", "run", "streamlit_app.py", "--server.enableCORS=false"]

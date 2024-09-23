@@ -37,7 +37,7 @@ def access_secret_version(project_id, secret_id, version_id="latest"):
 def token_generator(*,
                     scopes: list=['https://www.googleapis.com/auth/drive'],
                     token_path: str='token.json',
-                    credentials_path: str=os.getcwd()+ con.OAUTH_CREDENTIALS_PATH
+                    credentials_path: str=os.getcwd() + '/oauth_credentials.json'  # Path to OAuth credentials file
                     ) -> Credentials:
     """Given a path to a saved token (which may not exist) and a path to
     your credentials file, return a `Credentials` instance.
@@ -45,19 +45,20 @@ def token_generator(*,
 
     def recertify():
         """Create a new Credentials instance using InstalledAppFlow."""
-        flow = InstalledAppFlow.from_client_secrets_file(
-            credentials_path, scopes)
-        return flow.run_local_server(port=0)
+        # Use `run_console()` instead of `run_local_server()` for headless environments
+        flow = InstalledAppFlow.from_client_secrets_file(credentials_path, scopes)
+        
+        # For containerized apps, `run_console()` outputs a link that users can use to authenticate
+        return flow.run_local_server(port=0, access_type='offline', prompt='consent')
 
     creds = None
 
     # The file token.json stores the user's access and refresh tokens, and is
-    # created automatically when the authorization flow completes for the first
-    # time.
+    # created automatically when the authorization flow completes for the first time.
     if os.path.exists(token_path):
-        # We have a token file. Recreate the credentials"
+        # We have a token file. Recreate the credentials
         creds = Credentials.from_authorized_user_file(token_path, scopes)
-        if creds.valid:
+        if creds and creds.valid:
             # We have valid credentials
             return creds
 
@@ -67,7 +68,7 @@ def token_generator(*,
         try:
             creds.refresh(Request())
         except Exception:
-            # Probaly the refresh token has expired, so we must start anew
+            # Probably the refresh token has expired, so we must start anew
             creds = recertify()
     else:
         creds = recertify()
@@ -77,7 +78,6 @@ def token_generator(*,
         token_file.write(creds.to_json())
 
     return creds
-
 # Post-processing
 def format_docs(docs):
     return "\n\n".join(doc.page_content for doc in docs)
@@ -107,3 +107,21 @@ def create_service_account_credentials_file():
         f.write(sa_key)
 
     os.environ['GOOGLE_APPLICATION_CREDENTIALS'] = credentials_file
+
+
+def create_api_key_file(key_name, file_name):
+    sa_key = access_secret_version("jobportal-chatbot", key_name)
+
+    # Ensure the directory exists
+    credentials_dir = os.path.join(os.getcwd(), ".credentials")
+    # Define the full path for the credentials file
+    credentials_file = os.path.join(credentials_dir, file_name)
+    os.makedirs(credentials_dir, exist_ok=True)
+
+    # Write the service account JSON to a temporary file
+    with open(credentials_file, 'w') as f:
+        f.write(sa_key)
+
+    print(sa_key)
+
+    os.environ[key_name] = sa_key
