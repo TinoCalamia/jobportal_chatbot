@@ -27,6 +27,7 @@ protobuf = "4.25.4"
 pillow = "9.5.0"
 google-cloud-discoveryengine = "0.12.2"
 faiss-cpu = "1.8.0.post1"
+unstructured = "0.15.13"
 
 
 [build-system]

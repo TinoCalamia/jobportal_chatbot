@@ -38,5 +38,7 @@ def create_job_prompt():
 
             I want all headings to be in bold and have the colour 1e90ff.
 
-            Make sure that you have a personal tone when phrasing. Use the "Du" form in German.
+            Make sure that you have a personal tone when phrasing. Use the "Du" form in German. 
+            Only return matching jobs from the context. No other jobs.
+            If you think there is not matching job in the context, don't return any and let the user know
             """

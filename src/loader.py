@@ -1,11 +1,11 @@
 import os
 from langchain_google_community import GoogleDriveLoader
-from langchain_community.document_loaders import DirectoryLoader, TextLoader
+from langchain_community.document_loaders import DirectoryLoader, UnstructuredWordDocumentLoader
 
 import src.constants as con
 
-def load_folder_docs(path='../', glob="**/*.txt"):
-    loader = DirectoryLoader(path, glob=glob, use_multithreading=True, loader_cls=TextLoader)
+def load_folder_docs(path=os.path.join(os.getcwd(), 'src', 'documents'), glob="*.docx"):
+    loader = DirectoryLoader(path, glob=glob, use_multithreading=True, loader_cls=UnstructuredWordDocumentLoader)
 
     docs = loader.load()
 
