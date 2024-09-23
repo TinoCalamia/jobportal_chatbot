@@ -773,6 +773,20 @@ files = [
 ]
 
 [[package]]
+name = "docx"
+version = "0.2.4"
+description = "The docx module creates, reads and writes Microsoft Office Word 2007 docx files"
+optional = false
+python-versions = "*"
+files = [
+    {file = "docx-0.2.4.tar.gz", hash = "sha256:9d7595eac6e86cda0b7136a2995318d039c1f3eaa368a3300805abbbe5dc8877"},
+]
+
+[package.dependencies]
+lxml = "*"
+Pillow = ">=2.0"
+
+[[package]]
 name = "durationpy"
 version = "0.7"
 description = "Module for converting between datetime.timedelta and Go's Duration strings."
@@ -5330,4 +5344,4 @@ type = ["pytest-mypy"]
 [metadata]
 lock-version = "2.0"
 python-versions = "3.11.10"
-content-hash = "290a43cbba2f80b3ff78fae26433dcc439313c2b0f827d6ff46c36cb1093cb05"
+content-hash = "83859b284d4ca61a4c3729e1ab6129483392a81a017c2bb764643a7d7bbf0826"
