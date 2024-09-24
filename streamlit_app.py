@@ -79,13 +79,13 @@ st.markdown("<h1 style='text-align: center; color: ##0582BC;'>💼 Job Assistent
 # Load and display the image
 col1, col2, col3 = st.columns([1,2,1])
 with col2:
-    st.image(Image.open("src/images/Bayernlb-logo.png"), use_column_width=True)
+    st.image(Image.open("src/images/Bayernlb-logo.svg"), use_column_width=True)
     
 def run_app():
     # Initialize session state
     if "messages" not in st.session_state:
         st.session_state.messages = [
-            {"role": "assistant", "content": "Hey! Ich bin dein Job-Assistent. Ich helfe dir deinen Traumjob zu finden. Wie kann ich Ihnen heute behilflich sein?"}
+            {"role": "assistant", "content": "Hey! Ich bin dein Job-Assistent. Ich helfe dir deinen Traumjob zu finden. Wie kann ich dir heute behilflich sein?"}
         ]
     if "current_question" not in st.session_state:
         st.session_state.current_question = None
@@ -115,16 +115,16 @@ def run_app():
         # If it's not the third question, just acknowledge and ask for the next
         if counter < 3:
             response_list = responses = [
-                "Super, danke für die Info! Wusstest Du, dass BayernLB einst als ‚Hausbank der bayerischen Könige‘ galt? Na gut, vielleicht nicht ganz, aber ein bisschen königlich sind wir schon!",
-                "Vielen Dank! Weißt Du, neulich habe ich Elon Musk gefragt, ob er BayernLB kennt. Er meinte, er braucht noch einen Kredit für sein nächstes Weltraumprojekt – vielleicht sollten wir ihm helfen!",
-                "Haha, das klingt genau wie das, was ich von unserem CEO gehört habe! Fun Fact: Wusstest Du, dass BayernLB eine der wenigen Banken ist, die auch wirklich noch in Bayern verankert sind? Nicht nur im Namen!",
-                "Danke für Deine Antwort! Apropos, BayernLB hat einmal eine Kuh auf einem Bauernhof in Bayern gesponsert. Naja, nicht wirklich, aber wir machen uns stark für regionale Projekte!",
-                "Klasse Info! Wusstest Du, dass wir bei BayernLB so regional sind, dass wir sogar die Weißwurst lieben? Natürlich nicht in der Bank, aber das gehört zu unserem bayerischen Herz!",
-                "Interessant, vielen Dank! Fun Fact: BayernLB hat sogar in der bayerischen Bierbraukunst investiert! Okay, das ist vielleicht übertrieben, aber wir sind definitiv Fans davon.",
-                "Das ist spannend! Wusstest Du, dass BayernLB Kunden hat, die vom Tegernsee bis zur Zugspitze reichen? So viele Höhenmeter haben wir schon erklommen – zumindest auf dem Papier!",
-                "Danke Dir! Apropos, BayernLB ist ein bisschen wie der FC Bayern München – wir spielen ganz oben mit! Okay, vielleicht nicht auf dem Fußballfeld, aber definitiv im Finanzwesen.",
-                "Super, danke! Fun Fact: BayernLB hat fast so viele Mitarbeiter wie es Biergärten in München gibt! Na gut, vielleicht nicht ganz, aber wir kommen nah dran.",
-                "Vielen Dank! Wusstest Du, dass BayernLB die einzige Bank ist, die sowohl in der Finanzwelt als auch in den Bergen von Bayern fest verwurzelt ist? Das ist wahre Bodenhaftung!"
+                "Super, danke für die Info! Wusstest Du, dass BayernLB einst als ‚Hausbank der bayerischen Könige‘ galt? Na gut, vielleicht nicht ganz, aber ein bisschen königlich sind wir schon! Kannst du mir noch mehr Informationen geben?",
+                "Vielen Dank! Weißt Du, neulich habe ich Elon Musk gefragt, ob er BayernLB kennt. Er meinte, er braucht noch einen Kredit für sein nächstes Weltraumprojekt – vielleicht sollten wir ihm helfen! Beschreib deine Stärken oder Interessen noch ein wenig mehr.",
+                "Haha, das klingt genau wie das, was ich von unserem CEO gehört habe! Fun Fact: Wusstest Du, dass BayernLB eine der wenigen Banken ist, die auch wirklich noch in Bayern verankert sind? Nicht nur im Namen! Beschreib deine Stärken oder Interessen noch ein wenig mehr.",
+                "Danke für Deine Antwort! Apropos, BayernLB hat einmal eine Kuh auf einem Bauernhof in Bayern gesponsert. Naja, nicht wirklich, aber wir machen uns stark für regionale Projekte! Beschreib deine Stärken oder Interessen noch ein wenig mehr.",
+                "Klasse Info! Wusstest Du, dass wir bei BayernLB so regional sind, dass wir sogar die Weißwurst lieben? Natürlich nicht in der Bank, aber das gehört zu unserem bayerischen Herz! Kannst du mir noch mehr Informationen geben?",
+                "Interessant, vielen Dank! Fun Fact: BayernLB hat sogar in der bayerischen Bierbraukunst investiert! Okay, das ist vielleicht übertrieben, aber wir sind definitiv Fans davon. Beschreib deine Stärken oder Interessen noch ein wenig mehr.",
+                "Das ist spannend! Wusstest Du, dass BayernLB Kunden hat, die vom Tegernsee bis zur Zugspitze reichen? So viele Höhenmeter haben wir schon erklommen – zumindest auf dem Papier! Kannst du mir noch mehr Informationen geben?",
+                "Danke Dir! Apropos, BayernLB ist ein bisschen wie der FC Bayern München – wir spielen ganz oben mit! Okay, vielleicht nicht auf dem Fußballfeld, aber definitiv im Finanzwesen. Kannst du mir noch mehr Informationen geben?",
+                "Super, danke! Fun Fact: BayernLB hat fast so viele Mitarbeiter wie es Biergärten in München gibt! Na gut, vielleicht nicht ganz, aber wir kommen nah dran. Beschreib deine Stärken oder Interessen noch ein wenig mehr.",
+                "Vielen Dank! Wusstest Du, dass BayernLB die einzige Bank ist, die sowohl in der Finanzwelt als auch in den Bergen von Bayern fest verwurzelt ist? Das ist wahre Bodenhaftung! Beschreib deine Stärken oder Interessen noch ein wenig mehr."
             ]
 
             response = random.choice(response_list)
