@@ -40,5 +40,6 @@ def create_job_prompt():
 
             Make sure that you have a personal tone when phrasing. Use the "Du" form in German. 
             Only return matching jobs from the context. No other jobs.
-            If you think there is not matching job in the context, don't return any and let the user know
+            If you think there is not matching job in the context, don't return any and let the user know.
+            It is very important that you rely on jobs in the context, otherwise this can cause issues.
             """
