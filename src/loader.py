@@ -4,8 +4,8 @@ from langchain_community.document_loaders import DirectoryLoader, UnstructuredWo
 
 import src.constants as con
 
-def load_folder_docs(path=os.path.join(os.getcwd(), 'src', 'documents'), glob="*.docx"):
-    loader = DirectoryLoader(path, glob=glob, use_multithreading=True, loader_cls=UnstructuredWordDocumentLoader)
+def load_folder_docs(path=os.path.join(os.getcwd(), 'src', 'documents')):
+    loader = DirectoryLoader(path, glob="*.docx", use_multithreading=True, loader_cls=UnstructuredWordDocumentLoader)
 
     docs = loader.load()
 
