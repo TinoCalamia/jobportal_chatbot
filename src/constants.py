@@ -1,8 +1,8 @@
 # All relevant constants for the project
 
 ########## Splitter Constants ##########
-SPLITTER_CHUNK_SIZE = 1000
-SPLITTER_CHUNK_OVERLAP = 100
+SPLITTER_CHUNK_SIZE = 1500
+SPLITTER_CHUNK_OVERLAP = 200
 
 ########## Credential Paths ##########
 OAUTH_CREDENTIALS_PATH ='/.credentials/oauth_credentials.json'
@@ -18,5 +18,5 @@ PROMPT_TEMPLATE = "job"
 
 
 ########## LLM ##########
-MODEL_NAME = "gpt-3.5-turbo"
-MODEL_TEMPERATURE = 0
+MODEL_NAME = "gpt-4"
+MODEL_TEMPERATURE = 0.2
