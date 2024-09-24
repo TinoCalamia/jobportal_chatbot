@@ -79,7 +79,7 @@ st.markdown("<h1 style='text-align: center; color: ##0582BC;'>💼 Job Assistent
 # Load and display the image
 col1, col2, col3 = st.columns([1,2,1])
 with col2:
-    st.image(Image.open("src/images/Bayernlb-logo.svg"), use_column_width=True)
+    st.image(Image.open("src/images/Bayernlb-logo.png"))
     
 def run_app():
     # Initialize session state
