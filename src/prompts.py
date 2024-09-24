@@ -25,16 +25,16 @@ def create_job_prompt():
             
             Question: {question}
 
-            Use the following format:
+            Use the following format but use the actual wording from the job file in the context:
 
-            heading 1: Job title
-            heading 2: Mission
+            heading 1: Job Titel
+            heading 2: Deine Mission
             Normal text: Summary of the mission
-            heading 1: Required skills
+            heading 1: Deine Superkräfte
             Normal text: Summary of the skills
-            heading 4: Location
-            heading 5: Job type
-            Heading 1: Link to the job page
+            heading 4: Ort
+            heading 5: Jobtyp
+            Heading 1: Link zum Job
 
             I want all headings to be in bold and have the colour 1e90ff.
 

@@ -18,5 +18,5 @@ PROMPT_TEMPLATE = "job"
 
 
 ########## LLM ##########
-MODEL_NAME = "gpt-3.5-turbo"
+MODEL_NAME = "gpt-4o"
 MODEL_TEMPERATURE = 0
