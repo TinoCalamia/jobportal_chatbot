@@ -19,7 +19,7 @@ os.environ['LANGCHAIN_TRACING_V2'] = "true"
 os.environ['LANGCHAIN_ENDPOINT'] = "https://api.smith.langchain.com"
 
 # create_service_account_credentials_file()
-create_api_key_file('OPENAI_API_KEY','openai_key.json')
+# create_api_key_file('OPENAI_API_KEY','openai_key.json')
 
 
 from src.loader import load_folder_docs
