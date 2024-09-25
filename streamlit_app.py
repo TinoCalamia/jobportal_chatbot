@@ -3,6 +3,7 @@ import json
 import shutil
 from PIL import Image
 import random
+import numpy as np
 
 from langchain_core.output_parsers import StrOutputParser
 from langchain_core.runnables import RunnablePassthrough
@@ -18,7 +19,7 @@ os.environ['LANGCHAIN_TRACING_V2'] = "true"
 os.environ['LANGCHAIN_ENDPOINT'] = "https://api.smith.langchain.com"
 
 # create_service_account_credentials_file()
-# create_api_key_file('OPENAI_API_KEY','openai_key.json')
+create_api_key_file('OPENAI_API_KEY','openai_key.json')
 
 
 from src.loader import load_folder_docs
@@ -74,8 +75,9 @@ rag_chain = prepare_data()
 print('---------- Load Streamlit App -------------')
 
 # Title and Image
-st.markdown("<h1 style='text-align: center; color: ##0582BC;'>💼 Job Assistent</h1>", unsafe_allow_html=True)
-
+st.markdown("<h1 style='text-align: center; color: ##0582BC;'>Job Assistent</h1>", unsafe_allow_html=True)
+saenger_img = Image.open("src/images/blb_saenger.png")
+fee_img = Image.open("src/images/blb_fee.png")
 # Load and display the image
 col1, col2, col3 = st.columns([1,2,1])
 with col2:
@@ -83,6 +85,7 @@ with col2:
     
 def run_app():
     # Initialize session state
+    
     if "messages" not in st.session_state:
         st.session_state.messages = [
             {"role": "assistant", "content": "Hey! Ich bin dein Job-Assistent. Ich helfe dir deinen Traumjob zu finden. Wie kann ich dir heute behilflich sein?"}
@@ -94,7 +97,11 @@ def run_app():
 
     # Display chat messages
     for message in st.session_state.messages:
-        with st.chat_message(message["role"]):
+        if message["role"] != "user":
+            avatar = fee_img
+        elif message["role"] != "assistant":
+            avatar = saenger_img
+        with st.chat_message(message["role"], avatar=avatar):
             st.markdown(message["content"])
 
     # Accept user input
@@ -107,14 +114,12 @@ def run_app():
         counter = len([True for item in st.session_state['messages'] if item['role'] == 'user'])
         print(counter)
 
-        with st.chat_message("user"):
-            print(st.session_state)
-            print(st.session_state.current_question)
+        with st.chat_message("user", avatar=np.array(saenger_img)):
             st.markdown(prompt)
         
         # If it's not the third question, just acknowledge and ask for the next
         if counter < 3:
-            response_list = responses = [
+            response_list = [
                 "Super, danke für die Info! Wusstest Du, dass BayernLB einst als ‚Hausbank der bayerischen Könige‘ galt? Na gut, vielleicht nicht ganz, aber ein bisschen königlich sind wir schon! Kannst du mir noch mehr Informationen geben?",
                 "Vielen Dank! Weißt Du, neulich habe ich Elon Musk gefragt, ob er BayernLB kennt. Er meinte, er braucht noch einen Kredit für sein nächstes Weltraumprojekt – vielleicht sollten wir ihm helfen! Beschreib deine Stärken oder Interessen noch ein wenig mehr.",
                 "Haha, das klingt genau wie das, was ich von unserem CEO gehört habe! Fun Fact: Wusstest Du, dass BayernLB eine der wenigen Banken ist, die auch wirklich noch in Bayern verankert sind? Nicht nur im Namen! Beschreib deine Stärken oder Interessen noch ein wenig mehr.",
@@ -134,7 +139,7 @@ def run_app():
             response = rag_chain.invoke(combined_questions)
         
         # Display chatbot response
-        with st.chat_message("assistant"):
+        with st.chat_message("assistant", avatar=np.array(fee_img)):
             st.markdown(response)
         st.session_state.messages.append({"role": "assistant", "content": response})
 

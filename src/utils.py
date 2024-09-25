@@ -121,7 +121,5 @@ def create_api_key_file(key_name, file_name):
     # Write the service account JSON to a temporary file
     with open(credentials_file, 'w') as f:
         f.write(sa_key)
-
-    print(sa_key)
-
+    
     os.environ[key_name] = sa_key
