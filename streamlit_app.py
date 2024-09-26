@@ -75,7 +75,7 @@ rag_chain = prepare_data()
 print('---------- Load Streamlit App -------------')
 
 # Title and Image
-st.markdown("<h1 style='text-align: center; color: ##0582BC;'>Job Assistent</h1>", unsafe_allow_html=True)
+st.markdown("<h1 style='text-align: center; color: ##0582BC;'>Traumjob-Finder</h1>", unsafe_allow_html=True)
 saenger_img = Image.open("src/images/blb_saenger.png")
 fee_img = Image.open("src/images/blb_fee.png")
 # Load and display the image
@@ -88,7 +88,8 @@ def run_app():
     
     if "messages" not in st.session_state:
         st.session_state.messages = [
-            {"role": "assistant", "content": "Hey! Ich bin dein Job-Assistent. Ich helfe dir deinen Traumjob zu finden. Wie kann ich dir heute behilflich sein?"}
+            {"role": "assistant", 
+             "content": "Hey! Schön, dass Du Dich für einen Job bei der BayernLB interessierst. Ich helfe Dir gerne dabei, Deinen Traumjob zu finden. Dafür brauche ich zunächst ein paar Angaben von Dir. Welche Einsatzbereiche interessieren Dich?"}
         ]
     if "current_question" not in st.session_state:
         st.session_state.current_question = None
@@ -105,7 +106,7 @@ def run_app():
             st.markdown(message["content"])
 
     # Accept user input
-    prompt = st.chat_input(f"Frag mich Dinge bzgl. Jobs.")
+    prompt = st.chat_input(f"Chatte mit mir.")
     
     if prompt and prompt != st.session_state.current_question:
         
@@ -118,21 +119,17 @@ def run_app():
             st.markdown(prompt)
         
         # If it's not the third question, just acknowledge and ask for the next
-        if counter < 3:
+        if counter < 5:
             response_list = [
-                "Super, danke für die Info! Wusstest Du, dass BayernLB einst als ‚Hausbank der bayerischen Könige‘ galt? Na gut, vielleicht nicht ganz, aber ein bisschen königlich sind wir schon! Kannst du mir noch mehr Informationen geben?",
-                "Vielen Dank! Weißt Du, neulich habe ich Elon Musk gefragt, ob er BayernLB kennt. Er meinte, er braucht noch einen Kredit für sein nächstes Weltraumprojekt – vielleicht sollten wir ihm helfen! Beschreib deine Stärken oder Interessen noch ein wenig mehr.",
-                "Haha, das klingt genau wie das, was ich von unserem CEO gehört habe! Fun Fact: Wusstest Du, dass BayernLB eine der wenigen Banken ist, die auch wirklich noch in Bayern verankert sind? Nicht nur im Namen! Beschreib deine Stärken oder Interessen noch ein wenig mehr.",
-                "Danke für Deine Antwort! Apropos, BayernLB hat einmal eine Kuh auf einem Bauernhof in Bayern gesponsert. Naja, nicht wirklich, aber wir machen uns stark für regionale Projekte! Beschreib deine Stärken oder Interessen noch ein wenig mehr.",
-                "Klasse Info! Wusstest Du, dass wir bei BayernLB so regional sind, dass wir sogar die Weißwurst lieben? Natürlich nicht in der Bank, aber das gehört zu unserem bayerischen Herz! Kannst du mir noch mehr Informationen geben?",
-                "Interessant, vielen Dank! Fun Fact: BayernLB hat sogar in der bayerischen Bierbraukunst investiert! Okay, das ist vielleicht übertrieben, aber wir sind definitiv Fans davon. Beschreib deine Stärken oder Interessen noch ein wenig mehr.",
-                "Das ist spannend! Wusstest Du, dass BayernLB Kunden hat, die vom Tegernsee bis zur Zugspitze reichen? So viele Höhenmeter haben wir schon erklommen – zumindest auf dem Papier! Kannst du mir noch mehr Informationen geben?",
-                "Danke Dir! Apropos, BayernLB ist ein bisschen wie der FC Bayern München – wir spielen ganz oben mit! Okay, vielleicht nicht auf dem Fußballfeld, aber definitiv im Finanzwesen. Kannst du mir noch mehr Informationen geben?",
-                "Super, danke! Fun Fact: BayernLB hat fast so viele Mitarbeiter wie es Biergärten in München gibt! Na gut, vielleicht nicht ganz, aber wir kommen nah dran. Beschreib deine Stärken oder Interessen noch ein wenig mehr.",
-                "Vielen Dank! Wusstest Du, dass BayernLB die einzige Bank ist, die sowohl in der Finanzwelt als auch in den Bergen von Bayern fest verwurzelt ist? Das ist wahre Bodenhaftung! Beschreib deine Stärken oder Interessen noch ein wenig mehr."
+                "Das klingt schon einmal spannend! Bei der BayernLB legen wir Wert darauf, dass sich unsere Mitarbeitenden mit unserem Unternehmen identifizieren können. Erzähl mir mehr: Was ist Dir bei einem Job wichtig?",
+                "Vielen Dank! Um das perfekte Job-Match für Dich zu finden, beschreibe mir bitte noch Deine Stärken: Worin bist Du besonders gut?",
+                "Super – das hilft mir weiter. Apropos Traumjob, kurze Frage am Rande: Von welchem Job hast Du eigentlich als Kind geträumt? 💭",
+                "Interessant! Bei der BayernLB brauchen wir Menschen wie Dich, die Großes bewirken möchten. Als Team arbeiten wir jeden Tag daran, großen Ideen zum Fortschritt zu verhelfen. Bist Du Bereit, ein Teil davon zu werden?"
             ]
 
-            response = random.choice(response_list)
+            response = response_list[counter-1]
+            response_list = response_list[counter:]
+
         else:
             # Generate response after the third question
             combined_questions = " ".join([msg["content"] for msg in st.session_state.messages if msg["role"] == "user"])
@@ -143,6 +140,6 @@ def run_app():
             st.markdown(response)
         st.session_state.messages.append({"role": "assistant", "content": response})
 
-        if counter == 3:
+        if counter == 5:
            st.session_state.messages.append({"role": "assistant", "content": "Danke für deine Fragen! Ich hoffe ich konnte dir bei der Suche nach einem passenden Job behilflich sein. Wenn du noch weitere Fragen hast, kannst du mich jederzeit fragen."})
 run_app()
