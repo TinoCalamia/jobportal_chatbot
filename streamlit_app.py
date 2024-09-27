@@ -101,7 +101,7 @@ def run_app():
         if message["role"] != "user":
             avatar = fee_img
         elif message["role"] != "assistant":
-            avatar = saenger_img
+            avatar = None
         with st.chat_message(message["role"], avatar=avatar):
             st.markdown(message["content"])
 
@@ -115,7 +115,7 @@ def run_app():
         counter = len([True for item in st.session_state['messages'] if item['role'] == 'user'])
         print(counter)
 
-        with st.chat_message("user", avatar=np.array(saenger_img)):
+        with st.chat_message("user", avatar=None):
             st.markdown(prompt)
         
         # If it's not the third question, just acknowledge and ask for the next
@@ -124,7 +124,7 @@ def run_app():
                 "Das klingt schon einmal spannend! Bei der BayernLB legen wir Wert darauf, dass sich unsere Mitarbeitenden mit unserem Unternehmen identifizieren können. Erzähl mir mehr: Was ist Dir bei einem Job wichtig?",
                 "Vielen Dank! Um das perfekte Job-Match für Dich zu finden, beschreibe mir bitte noch Deine Stärken: Worin bist Du besonders gut?",
                 "Super – das hilft mir weiter. Apropos Traumjob, kurze Frage am Rande: Von welchem Job hast Du eigentlich als Kind geträumt? 💭",
-                "Interessant! Bei der BayernLB brauchen wir Menschen wie Dich, die Großes bewirken möchten. Als Team arbeiten wir jeden Tag daran, großen Ideen zum Fortschritt zu verhelfen. Bist Du Bereit, ein Teil davon zu werden?"
+                "Interessant! Bei der BayernLB brauchen wir Menschen wie Dich, die Großes bewirken möchten. Als Team arbeiten wir jeden Tag daran, großen Ideen zum Fortschritt zu verhelfen. Bist Du bereit, ein Teil davon zu werden?"
             ]
 
             response = response_list[counter-1]
